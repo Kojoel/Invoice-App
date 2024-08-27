@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.cdnfonts.com/css/spartan');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --purple-deep: rgb(124, 93, 250);
+    --purple-light: rgb(146, 119, 255);
+    --deep-blue-deep: rgb(30, 33, 57);
+    --deep-blue-ligher: rgb(37, 41, 69);
+    --grey: rgb(223, 227, 250);
+    --dark-grey: rgb(136, 142, 176);
+    --light-blue: rgb(126, 136, 195);
+    --black-deep: rgb(12, 14, 22);
+    --red-deep: rgb(236, 87, 87);
+    --red-light: rgb(255, 151, 151);
+    --white-smokish: rgb(248, 248, 251);
+    --black-light: rgb(20, 22, 37);
+}
