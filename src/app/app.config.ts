@@ -8,13 +8,15 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 
 import { HttpClientModule } from '@angular/common/http';
+import { provideRouterStore } from '@ngrx/router-store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-              HttpClientModule,
-              provideRouter(routes), 
-              provideClientHydration(), 
-              provideStore(), 
-              provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }), provideEffects()
-            ]
+    HttpClientModule,
+    provideRouter(routes),
+    provideClientHydration(),
+    provideStore(),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }), provideEffects(),
+    provideRouterStore()
+]
 };
