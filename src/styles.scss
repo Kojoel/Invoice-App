@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Spartan', sans-serif;
 }
 
 :root {
@@ -19,4 +20,104 @@
     --red-light: rgb(255, 151, 151);
     --white-smokish: rgb(248, 248, 251);
     --black-light: rgb(20, 22, 37);
+    --edit-button-bg: #F9FAFE;
+    --save-as-draft-button-bg: #373B53;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+//Default button style
+.btn{
+    width: fit-content;
+    min-width: 73px;
+    height: 48px;
+    border: none;
+    border-radius: 24px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s ease-in;
+}
+
+//New Invoice button styles
+.new-invoice-btn {
+    width: 150px;
+    background: var(--purple-deep);
+    color: #ffffff; 
+    display: flex;
+    align-items: center;
+    padding: 8px;
+
+    .svg-container {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        background: #ffffff;
+        border-radius: 50%;
+        margin-right: 16px;
+    }
+}
+
+.new-invoice-btn:hover {
+    background: var(--purple-light);
+}
+
+
+// Mark as paid button styles
+.mark-as-paid-btn {
+    width: 131px;
+    background: var(--purple-deep);
+    color: #ffffff;
+}
+.mark-as-paid-btn:hover {
+    background: var(--purple-light);
+}
+
+
+//Edit button styles
+.edit-btn {
+    width: 73px;
+    background: var(--edit-button-bg);
+    color: var(--light-blue);
+}
+.edit-btn:hover {
+    color: var(--light-blue);
+}
+
+//Edit button styles
+.save-as-draft-btn {
+    width: 133px;
+    background: var(--save-as-draft-button-bg);
+    color: var(--dark-grey);
+}
+.save-as-draft-btn:hover {
+    background: var(--black-deep);
+    color: var(--dark-grey);
+}
+
+
+//Delete button styles
+.delete-btn {
+    width: 89px;
+    color: #ffffff;
+    background: var(--red-deep);
+}
+.delete-btn:hover {
+    background: var(--red-light);
+}
+
+
+//Add new item button styles
+.add-new-item-btn {
+    width: 350px;
+    background: var(--edit-button-bg);
+    color: var(--light-blue);
+}
+.add-new-item-btn:hover {
+    background: var(--grey);
 }
