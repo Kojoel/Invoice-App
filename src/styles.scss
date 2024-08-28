@@ -22,6 +22,14 @@
     --black-light: rgb(20, 22, 37);
     --edit-button-bg: #F9FAFE;
     --save-as-draft-button-bg: #373B53;
+    --orange-deep: #FF8F00;
+    --orange-light: #fff4e5;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: var(--white-smokish);
 }
 
 .buttons{
@@ -120,4 +128,18 @@
 }
 .add-new-item-btn:hover {
     background: var(--grey);
+}
+
+//Span elements with purple colour
+.span-purple {
+    color: var(--purple-deep);
+    place-items: Center;
+}
+
+.span-status-color {
+    display: inline-block;
+    color: var(--orange-deep);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
