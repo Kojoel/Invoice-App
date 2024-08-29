@@ -22,24 +22,26 @@
             </div>
         </div>
 
-        @for(invoice of invoiceItems$ | async; track $index){
-            <div class="invoice-list-items">
-                <div class="item-details">
-                    <div class="id-and-date">
-                        <div class="for-mobile-flexing">
-                            <p class="item-id"><span class="span-purple">#</span> {{  }} </p>
-                            <p class="item-due-date">Due 19 Aug 2021</p>
-                        </div>
-                        <p class="name">Jensen Huang</p>
-                    </div>
-                    <div class="amount-and-status">
-                        <p class="item-amount">$1,800.90</p>
-                        <p class="item-status"><span class="span-status-color">&#9679; Pending</span></p>
-                        <svg class="right-arrow" width="7" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4-4 4" stroke="#7C5DFA" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
-                    </div>
-                </div>
-            </div>
-        }
+        <div *ngIf="invoices$ | async as invoices">
+          <div *ngFor="let invoice of invoices; let i = index">
+              <div class="invoice-list-items">
+                  <div class="item-details">
+                      <div class="id-and-date">
+                          <div class="for-mobile-flexing">
+                              <p class="item-id"><span class="span-purple">#</span> {{ invoice.id }} </p>
+                              <p class="item-due-date"> {{ invoice.paymentDue}} </p>
+                          </div>
+                          <p class="name">{{ invoice.clientName }}</p>
+                      </div>
+                      <div class="amount-and-status">
+                          <p class="item-amount">{{ invoice.total | currency }}</p>
+                          <p class="item-status"><span class="span-status-color">&#9679; {{ invoice.status }} </span></p>
+                          <svg class="right-arrow" width="7" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4-4 4" stroke="#7C5DFA" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
     </div>
 </div>
 
