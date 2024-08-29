@@ -7,8 +7,9 @@
 }
 
 .invoice-list-wrapper {
-    width: 730px;
+    width: 780px;
     height: fit-content;
+    padding: 0 50px;
     // background: red;
 }
 
@@ -45,6 +46,7 @@
     border-radius: 8px;
     position: absolute;
     top: 3.3rem;
+    left: -2rem;;
     z-index: 4;
     display: flex;
     flex-direction: column;
@@ -133,7 +135,7 @@
     color: var(--black-deep);
     cursor: pointer;
     transition: .2s ease-in;
-    outline: none;
+    border: 1px solid transparent;
 }
 
 .invoice-list-items:hover {
@@ -143,6 +145,7 @@
 .item-details {
     width: 100%;
     display: flex;
+    // flex-direction: column;
     justify-content: space-between;
     align-items: center;
     // background: blue;
@@ -151,37 +154,47 @@
 .for-mobile-flexing {
     display: flex;
     align-items: center;
-    margin-right: 39px;
+    margin-right: 20px;
+    // background: yellow;
 }
 
 .id-and-date {
+    width: 100%;
     display: flex;
     align-items: center;
+    margin-right: 20px;
+    // justify-content: space-between;
 }
 
 .item-id {
+    width: 70px;
     font-weight: 800;
-    margin-right: 39px;
+    margin-right: 20px;
 }
 
 .item-due-date {
+    width: 85px;
     font-weight: 500;
     color: var(--dark-grey);
 }
 
 .amount-and-status {
+    width: 100%;
     display: flex;
+    justify-content: right;
     align-items: center;
 }
 
 .item-amount {
-    font-size: 1.2rem;
+    width: 100px;
+    font-size: 1rem;
     font-weight: 800;
-    margin-right: 39px;
+    margin-right: 20px;
+    text-align: right;
 }
 
 .name {
-    width: fit-content;
+    width: 110px;
     font-weight: 500;
     color: var(--dark-grey);
 }
@@ -192,7 +205,7 @@
     border-radius: 6px;
     display: grid;
     place-items: center;
-    margin-right: 39px;
+    margin-right: 20px;
     font-weight: 600;
 }
 
@@ -222,3 +235,100 @@
 
 // .right-arrow {
 // }
+
+
+/***************** Media Queries *******************/
+@media screen and (max-width: 800px) {
+
+    .invoice-list-wrapper {
+        height: fit-content;
+        padding: 0 50px;
+        // background: red;
+    }
+
+    .for-mobile-flexing {
+        margin-right: 20px;
+    }
+
+    .item-id {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .invoice-list-wrapper {
+        padding: 0 24px;
+    }
+
+    .invoice-list-items {
+        height: 134px;
+    }
+
+    .name {
+        text-align: right;
+    }
+
+    .for-mobile-flexing {
+        flex-direction: column;
+        gap: 24px;
+        margin-left: 10px;
+    }
+
+    .id-and-date {
+        justify-content: space-between;
+    }
+
+    .item-details {
+        flex-direction: column;
+    }
+
+    .amount-and-status {
+        justify-content: space-between;
+    }
+
+    .item-amount {
+        text-align: left;
+    }
+
+    .right-arrow {
+        display: none;
+    }
+
+    .item-status {
+        margin-right: 0;
+    }
+
+}
+
+@media screen and (max-width: 530px) {
+    .invoice-list-menu {
+        margin-bottom: 32px;
+    }
+
+    .new-invoice-btn {
+        width: 90px;
+
+        .svg-container {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+            padding-left: 10px;
+
+            svg {
+                width: 32px;
+
+                path {
+                    background: red;
+                }
+            }
+        }
+    }
+    
+    .right-side {
+        gap: 24px;
+    }
+
+    .no-of-invoices p:first-of-type{
+        font-size: 20px;
+    }
+}

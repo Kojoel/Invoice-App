@@ -20,6 +20,7 @@ export class InvoiceListComponent implements OnInit {
 
   //Variables for toggling
   filterClicked: boolean = false;
+  windowWidth: number = 0;
 
 
   constructor(private store: Store, private dataService: DataService) {
@@ -39,6 +40,15 @@ export class InvoiceListComponent implements OnInit {
     // this.dataService.getInvoices().subscribe(invoices => {
     //   console.log('Array of Invoices:', invoices);
     // });
+
+    this.dataService.windowWidth$.subscribe(width => {
+      this.windowWidth = width;
+    });
+    
+  }
+
+  getWindowSize() {
+    console.log("width of windows", window.innerWidth)
   }
 
   togglefilter() {
