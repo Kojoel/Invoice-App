@@ -6,12 +6,26 @@
                 <p>There are {{ (invoices$ | async)?.length || 0 }} total invoices</p>
             </div>
             <div class="right-side">
-                <div class="filter-by-status">
-                    <select name="status" id="status">
-                        <option for="draft" value="draft">Draft</option>
-                        <option for="draft" value="pending">Pending</option>
-                        <option for="draft" value="paid">Paid</option>
-                    </select>
+                <div class="filter-by-status" (click)="togglefilter()">
+                    <div class="title-clickable">
+                      <p>Filter by Status</p>
+                      <svg class="down-arrow" [class]="{'down-arrow-flip': filterClicked}" width="11" height="7" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4.228 4.228L9.456 1" stroke="#7C5DFA" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+                    </div>
+                    <div class="status-box" [class]="{'hideStatusBox': filterClicked}">
+                      <div class="draft-box">
+                        <input type="checkbox" name="statusbox" id="draft">
+                        <label for="draft">Draft</label>
+                      </div>
+                      <div class="pending-box">
+                        <input type="checkbox" name="statusbox" id="pending">
+                        <label for="pending">Pending</label>
+                      </div>
+                      <div class="paid-box">
+                        <input type="checkbox" name="statusbox" id="paid">
+                        <label for="paid">Paid</label>
+                      </div>
+                    </div>
+                    
                 </div>
                 <button class="btn new-invoice-btn">
                     <div class="svg-container">
@@ -22,9 +36,11 @@
             </div>
         </div>
 
-        <div *ngIf="invoices$ | async as invoices">
-          <div *ngFor="let invoice of invoices; let i = index">
-              <div class="invoice-list-items">
+        <!-- <div *ngIf="invoices$ | async as invoices">
+          <div *ngFor="let invoice of invoices; let i = index"> -->
+            @if(invoices$ | async; as invoices) {
+              @for(invoice of invoices; track invoice) {
+                <div class="invoice-list-items">
                   <div class="item-details">
                       <div class="id-and-date">
                           <div class="for-mobile-flexing">
@@ -35,68 +51,22 @@
                       </div>
                       <div class="amount-and-status">
                           <p class="item-amount">{{ invoice.total | currency }}</p>
-                          <p class="item-status"><span class="span-status-color">&#9679; {{ invoice.status }} </span></p>
+                          @if(invoice.status === 'paid') {
+                            <p class="item-status" [class]="{'status-paid-bg': true}"><span [class]="{'status-paid-color': true}" class="span-status-color">&#9679; {{ invoice.status.toUpperCase().slice(0,1) + invoice.status.slice(1) }} </span></p>
+                          }
+                          @else if(invoice.status === 'pending') {
+                            <p class="item-status" [class]="{'status-pending-bg': true}"><span [class]="{'status-pending-color': true}" class="span-status-color">&#9679; {{ invoice.status.toUpperCase().slice(0,1) + invoice.status.slice(1) }} </span></p>
+                          }
+                          @else if(invoice.status === 'draft') {
+                            <p class="item-status" [class]="{'status-draft-bg': true}"><span [class]="{'status-draft-color': true}" class="span-status-color">&#9679; {{ invoice.status.toUpperCase().slice(0,1) + invoice.status.slice(1) }} </span></p>
+                          }
                           <svg class="right-arrow" width="7" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4-4 4" stroke="#7C5DFA" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
                       </div>
                   </div>
               </div>
-          </div>
-        </div>
+              }
+            }
+          <!-- </div>
+        </div> -->
     </div>
 </div>
-
-<!-- <div class="main-container">
-    <div class="invoice-list-wrapper">
-      <div class="invoice-list-menu">
-        <div class="no-of-invoices">
-          <p>Invoices</p>
-          <p>There are {{ (invoices$ | async)?.length || 0 }} total invoices</p>
-        </div>
-        <div class="right-side">
-          <div class="filter-by-status">
-            <select name="status" id="status" aria-label="Filter invoices by status">
-              <option value="draft">Draft</option>
-              <option value="pending">Pending</option>
-              <option value="paid">Paid</option>
-            </select>
-          </div>
-          <button class="btn new-invoice-btn" aria-label="Create new invoice">
-            <div class="svg-container">
-              <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M6.313 10.023v-3.71h3.71v-2.58h-3.71V.023h-2.58v3.71H.023v2.58h3.71v3.71z" fill="#7C5DFA" fill-rule="nonzero"/>
-              </svg>
-            </div>
-            New Invoice
-          </button>
-        </div>
-      </div>
-  
-      <div class="invoice-list-items">
-        <ng-container *ngIf="invoices$ | async as invoices; else loading">
-          <div *ngFor="let invoice of invoices; trackBy: trackInvoice" class="item-details">
-            <div class="id-and-date">
-              <div class="for-mobile-flexing">
-                <p class="item-id"><span class="span-purple">#</span>{{ invoice.id }}</p>
-                <p class="item-due-date">Due {{ invoice.paymentDue | date: 'dd MMM yyyy' }}</p>
-              </div>
-              <p class="name">{{ invoice.clientName }}</p>
-            </div>
-            <div class="amount-and-status">
-              <p class="item-amount">{{ invoice.total | currency:'USD' }}</p>
-              <p class="item-status">
-                <span class="span-status-color" [ngClass]="invoice.status.toLowerCase()">
-                  &#9679; {{ invoice.status | titlecase }}
-                </span>
-              </p>
-              <svg class="right-arrow" width="7" height="10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M1 1l4 4-4 4" stroke="#7C5DFA" stroke-width="2" fill="none" fill-rule="evenodd"/>
-              </svg>
-            </div>
-          </div>
-        </ng-container>
-        <ng-template #loading>
-          <p>Loading invoices...</p>
-        </ng-template>
-      </div>
-    </div>
-  </div> -->
