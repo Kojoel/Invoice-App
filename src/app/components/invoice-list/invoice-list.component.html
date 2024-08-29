@@ -12,7 +12,7 @@
                 
             </div>
             <div class="right-side">
-                <div class="filter-by-status" (click)="togglefilter()">
+                <div class="filter-by-status" (mouseover)="togglefilter(true)">
                     <div class="title-clickable">
                       @if(windowWidth > 530) {
                         <p>Filter by Status</p>
@@ -22,17 +22,17 @@
                       }
                       <svg class="down-arrow" [class]="{'down-arrow-flip': filterClicked}" width="11" height="7" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4.228 4.228L9.456 1" stroke="#7C5DFA" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
                     </div>
-                    <div class="status-box" [class]="{'hideStatusBox': filterClicked}">
+                    <div class="status-box" [class]="{'hideStatusBox': filterClicked}" (mouseover)="togglefilter(true)" (mouseleave)="togglefilter(false)">
                       <div class="draft-box">
-                        <input type="checkbox" name="statusbox" id="draft">
+                        <input type="checkbox" name="statusbox" id="draft" [(ngModel)]="filter.draft" (ngModelChange)="filterInvoices()">
                         <label for="draft">Draft</label>
                       </div>
                       <div class="pending-box">
-                        <input type="checkbox" name="statusbox" id="pending">
+                        <input type="checkbox" name="statusbox" id="pending" [(ngModel)]="filter.pending" (ngModelChange)="filterInvoices()">
                         <label for="pending">Pending</label>
                       </div>
                       <div class="paid-box">
-                        <input type="checkbox" name="statusbox" id="paid">
+                        <input type="checkbox" name="statusbox" id="paid" [(ngModel)]="filter.paid" (ngModelChange)="filterInvoices()">
                         <label for="paid">Paid</label>
                       </div>
                     </div>
@@ -55,7 +55,7 @@
 
         <!-- <div *ngIf="invoices$ | async as invoices">
           <div *ngFor="let invoice of invoices; let i = index"> -->
-            @if(invoices$ | async; as invoices) {
+            @if(filteredInvoices$ | async; as invoices) {
               @for(invoice of invoices; track invoice) {
                 <div class="invoice-list-items">
                   <div class="item-details">

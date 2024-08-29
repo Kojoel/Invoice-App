@@ -13,9 +13,12 @@ export class DataService {
 
   windowWidth$: Observable<number>;
 
+  store: any;
+  selectedStatuses: any;
+  invoices$: any;
+
   constructor(private http: HttpClient) { 
     // An observable that listens to the windows innerwidth
-
     if (typeof window !== 'undefined') {
       this.windowWidth$ = fromEvent(window, 'resize').pipe(
         map(() => window.innerWidth),
@@ -30,10 +33,6 @@ export class DataService {
   getInvoices(): Observable<Invoice[]> {
     return this.http.get<Invoice[]>(this.dataUrl);
   }
-
-
-  
-
   
 
 }
