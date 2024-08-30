@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="main-container" *ngIf="invoice$ | async as invoice">
     <div class="invoice-details-wrapper">
         <div class="nav-back" (click)="gotoList()">
             <svg class="back-arrow" width="7" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M6.342.886L2.114 5.114l4.228 4.228" stroke="#9277FF" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
@@ -7,7 +7,16 @@
         <div class="controls">
             <div class="status">
                 <p>Status</p>
-                <p class="item-status" ><span class="span-status-color">&#9679;</span>Pending</p>
+                @if(invoice.status === 'paid') {
+                    <p class="item-status" [class]="{'status-paid-bg': true}"><span [class]="{'status-paid-color': true}" class="span-status-color">&#9679; {{ invoice.status.toUpperCase().slice(0,1) + invoice.status.slice(1) }} </span></p>
+                }
+                @else if(invoice.status === 'pending') {
+                <p class="item-status" [class]="{'status-pending-bg': true}"><span [class]="{'status-pending-color': true}" class="span-status-color">&#9679; {{ invoice.status.toUpperCase().slice(0,1) + invoice.status.slice(1) }} </span></p>
+                }
+                @else if(invoice.status === 'draft') {
+                <p class="item-status" [class]="{'status-draft-bg': true}"><span [class]="{'status-draft-color': true}" class="span-status-color">&#9679; {{ invoice.status.toUpperCase().slice(0,1) + invoice.status.slice(1) }} </span></p>
+                }
+                <!-- <p class="item-status" ><span class="span-status-color">&#9679;</span>{{ invoice.status }}</p> -->
             </div>
             <div class="control-btns">
                 <button class="btn edit-btn">Edit</button>
@@ -19,14 +28,14 @@
         <div class="details-container">
             <div class="top-sec">
                 <div class="id-and-occupation">
-                    <p class="id"><span class="id-span">#</span>XM9A1</p>
-                    <p class="description">Graphic Design</p>
+                    <p class="id"><span class="id-span">#</span>{{ invoice.id }}</p>
+                    <p class="description">{{ invoice.description }}</p>
                 </div>
                 <div class="senders-address">
-                    <p class="senders-street">19 Union Terrace</p>
-                    <p class="senders-city">London </p>
-                    <p class="senders-postcode">E1 3EZ</p>
-                    <p class="senders-country">United Kingdom</p>
+                    <p class="senders-street">{{ invoice.senderAddress.street}}</p>
+                    <p class="senders-city">{{ invoice.senderAddress.city }} </p>
+                    <p class="senders-postcode">{{ invoice.senderAddress.postCode }}</p>
+                    <p class="senders-country">{{ invoice.senderAddress.country }}</p>
                 </div>
             </div>
 
@@ -34,30 +43,30 @@
                 <div class="dates">
                     <div class="invoice-date">
                         <p>Invoice Date</p>
-                        <p>21 Aug 2021</p>
+                        <p>{{ invoice.createdAt }}</p>
                     </div>
                     <div class="payment-due">
                         <p>Payment Due</p>
-                        <p>20 Sep 2021</p>
+                        <p>{{ invoice.paymentDue }}</p>
                     </div>
                 </div>
 
                 <div class="client-bill">
                     <div class="bill-to">
                         <p>Bill To</p>
-                        <p class="client-name">Alex Grim</p>
+                        <p class="client-name">{{ invoice.clientName }}</p>
                     </div>
                     <div class="client-address">
-                        <p class="clients-street">84 Church Way</p>
-                        <p class="clients-city">Bradford</p>
-                        <p class="clients-post-code">BD1 9PB</p>
-                        <p class="clients-country">United Kingdom</p>
+                        <p class="clients-street">{{ invoice.clientAddress.street }}</p>
+                        <p class="clients-city">{{ invoice.clientAddress.city }}</p>
+                        <p class="clients-post-code">{{ invoice.clientAddress.postCode }}</p>
+                        <p class="clients-country">{{ invoice.clientAddress.country }}</p>
                     </div>
                 </div>
 
                 <div class="send-to">
                     <p>Send to</p>
-                    <p class="client-email">alexgrimmail.com</p>
+                    <p class="client-email">{{ invoice.clientEmail }}</p>
                 </div>
             </div>
 
@@ -71,26 +80,20 @@
                             <p>Total</p>
                         </div>
                     </div>
-                    <div class="item-description">
-                        <p>Banner Design</p>
-                        <div class="">
-                            <p>1</p>
-                            <p>$156.00</p>
-                            <p>$156.00</p>
+                    @for(item of invoice.items; track item) {
+                        <div class="item-description">
+                            <p>{{ item.name }}</p>
+                            <div class="">
+                                <p>{{ item.quantity }}</p>
+                                <p>{{ item.price | currency:'GBP' }}</p>
+                                <p>{{ item.total | currency:'GBP' }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item-description">
-                        <p>Email Design</p>
-                        <div class="">
-                            <p>2</p>
-                            <p>$200.00</p>
-                            <p>$400.00</p>
-                        </div>
-                    </div>
+                    }
                 </div>
                 <div class="amount-due">
                     <p>Amount Due</p>
-                    <p>$ 556.00</p>
+                    <p>{{ invoice.total | currency:'GBP' }}</p>
                 </div>
             </div>
         </div>
