@@ -1,0 +1,13 @@
+<div class="delete-item-container" [class]="{'show-modal': this.deleteModalService.showModal}">
+    <p class="confirm">Confirm Deletion</p>
+    <p>Are you sure you want to delete invoice <span class="item-id">#{{this.deleteModalService.modalIndex}}</span>? This action cannot be undone.</p>
+    <div class="confirmation-btns">
+        <button class="btn edit-btn" (click)="this.deleteModalService.toggleModal()">Cancel</button>
+        <button class="btn delete-btn" 
+            (click)="deleteModalService.onDeleteInvoice(deleteModalService.modalIndex)">
+            Delete
+        </button>
+    </div>
+</div>
+
+<div class="lightbox" [class]="{'show-modal': this.deleteModalService.showModal}"></div>

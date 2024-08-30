@@ -1,3 +1,4 @@
+<app-delete-modal/>
 <div class="main-container" *ngIf="invoice$ | async as invoice">
     <div class="invoice-details-wrapper">
         <div class="nav-back" (click)="gotoList()">
@@ -20,7 +21,10 @@
             </div>
             <div class="control-btns">
                 <button class="btn edit-btn">Edit</button>
-                <button class="btn delete-btn" (click)="onDeleteInvoice(invoice.id)">Delete</button>
+                <button class="btn delete-btn" 
+                    (click)="onDeleteInvoice(invoice.id)">
+                    Delete
+                </button>
                 <button class="btn mark-as-paid-btn">Mark as Paid</button>
             </div>
         </div>

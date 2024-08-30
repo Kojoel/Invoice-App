@@ -7,11 +7,13 @@ import { selectAllInvoices } from '../../store/invoice.selectors';
 import { Invoice } from '../../model/invoice.model';
 import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
 import { deleteInvoice } from '../../store/invoice.actions';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+import { DeleteModalService } from '../../services/delete-modal.service';
 
 @Component({
   selector: 'app-invoice-details',
   standalone: true,
-  imports: [InvoiceListComponent, NgIf, AsyncPipe, CommonModule],
+  imports: [InvoiceListComponent, NgIf, AsyncPipe, CommonModule, DeleteModalComponent],
   templateUrl: './invoice-details.component.html',
   styleUrl: './invoice-details.component.scss'
 })
@@ -21,7 +23,9 @@ export class InvoiceDetailsComponent {
   constructor(
     private router: Router, 
     private store: Store, 
-    private route: ActivatedRoute,) {
+    private route: ActivatedRoute,
+    public deleteModalService: DeleteModalService,
+  ) {
       // this.invoice$ = this.store.select(selectAllInvoices);
   }
 
@@ -34,11 +38,14 @@ export class InvoiceDetailsComponent {
   }
 
 
+  // onDeleteInvoice(id: string): void {
+  //   this.store.dispatch(deleteInvoice({ id }));
+  // }
   onDeleteInvoice(id: string): void {
-    if (confirm('Are you sure you want to delete this invoice?')) {
-      this.store.dispatch(deleteInvoice({ id }));
-      this.gotoList();
-    }
+    this.deleteModalService.toggleModal();
+    this.deleteModalService.modalIndex = id;
+    // console.log(this.deleteModalService.showModal);
+    // console.log(this.deleteModalService.modalIndex);
   }
 
   gotoList(): void {
