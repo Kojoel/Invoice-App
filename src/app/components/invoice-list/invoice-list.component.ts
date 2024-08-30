@@ -80,6 +80,6 @@ export class InvoiceListComponent implements OnInit {
 
   viewInvoiceDetails(invoice: Invoice): void {
     this.router.navigate(['/details', invoice.id]);
-    console.log(invoice.id);
+    // console.log(invoice.id);
   }
 }

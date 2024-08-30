@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Invoice } from '../model/invoice.model';
 import * as InvoiceActions from './invoice.actions';
+import { deleteInvoice, deleteInvoiceSuccess } from './invoice.actions';
 
 export interface InvoiceState {
   invoices: Invoice[];
@@ -25,4 +26,8 @@ export const invoiceReducer = createReducer(
     invoices,
     loading: false
   })),
+  on(deleteInvoice, (state, { id }) => ({
+    ...state,
+    invoices: state.invoices.filter(invoice => invoice.id !== id)
+  }))
 );

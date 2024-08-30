@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { selectAllInvoices } from '../../store/invoice.selectors';
 import { Invoice } from '../../model/invoice.model';
 import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
+import { deleteInvoice } from '../../store/invoice.actions';
 
 @Component({
   selector: 'app-invoice-details',
@@ -24,18 +25,21 @@ export class InvoiceDetailsComponent {
       // this.invoice$ = this.store.select(selectAllInvoices);
   }
 
-  // ngOnInit(): void {
-  //   this.invoice$.subscribe(invoice => console.log(invoice));
-  // }
-
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.invoice$ = this.store.select(selectAllInvoices).pipe(
       map(invoices => invoices.find(invoice => invoice.id === id))
     );
+    this.invoice$.subscribe(invoice => console.log(invoice));
   }
 
 
+  onDeleteInvoice(id: string): void {
+    if (confirm('Are you sure you want to delete this invoice?')) {
+      this.store.dispatch(deleteInvoice({ id }));
+      this.gotoList();
+    }
+  }
 
   gotoList(): void {
     this.router.navigate(['/home']);
