@@ -3,6 +3,6 @@ import { InvoiceDetailsComponent } from './components/invoice-details/invoice-de
 import { InvoiceListComponent } from './components/invoice-list/invoice-list.component';
 
 export const routes: Routes = [
-    { path: '', component: InvoiceListComponent },
-    { path: 'invoice/:id', component: InvoiceDetailsComponent }
+    { path: 'home', component: InvoiceListComponent },
+    { path: 'details', component: InvoiceDetailsComponent },
 ];

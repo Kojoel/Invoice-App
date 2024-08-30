@@ -8,13 +8,14 @@ import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
 import { DataService } from '../../services/data.service';
 import { FormsModule } from '@angular/forms';
 import { InvoiceDetailsComponent } from '../invoice-details/invoice-details.component';
+import { Router } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
-  imports: [CommonModule, NgIf, AsyncPipe, FormsModule, InvoiceDetailsComponent,],
+  imports: [CommonModule, NgIf, AsyncPipe, FormsModule, InvoiceDetailsComponent],
   templateUrl: './invoice-list.component.html',
   styleUrls: ['./invoice-list.component.scss']
 })
@@ -31,10 +32,9 @@ export class InvoiceListComponent implements OnInit {
     pending: false,
     paid: false
   };
-  router: any;
 
 
-  constructor(private store: Store, private dataService: DataService) {
+  constructor(private store: Store, private dataService: DataService, private router: Router) {
     this.invoices$ = this.store.select(selectAllInvoices); // Gets data from store
     // this.invoices$ = this.dataService.getInvoices();  // Gets data from service
 
@@ -78,8 +78,7 @@ export class InvoiceListComponent implements OnInit {
 
   }
 
-  viewInvoiceDetails(id: string): void {
-    this.router.navigate(['/invoice', id]);
-    console.log("its working: ", id);
+  viewInvoiceDetails(): void {
+    this.router.navigate(['/details']);
   }
 }
