@@ -28,10 +28,12 @@
 }
 
 .status {
+    width: 100%;
     display: flex;
     align-items: center;
     font-size: 0.75rem;
     font-weight: 700;
+    
 
     p:first-of-type{
         margin-right: 16px;
@@ -107,6 +109,7 @@
     border-radius: 8px;
     padding: 32px;
     margin-bottom: 32px;
+    position: relative;
 }
 
 
@@ -118,6 +121,7 @@
     color: var(--item-details-text-color);
     margin-bottom: 21px;
     font-weight: 500;
+    flex-wrap: wrap;
 }
 
 .id-and-occupation {
@@ -151,6 +155,7 @@
     display: flex;
     gap: 100px;
     margin-bottom: 45px;
+    flex-wrap: wrap;
 }
 
 .dates {
@@ -315,5 +320,45 @@
     p:last-of-type {
         font-size: 24px;
         font-weight: 700;
+    }
+}
+
+
+// Media Queries 
+@media screen and (max-width: 600px) {
+    .invoice-details-wrapper {
+        width: 450px;
+    }
+
+    .top-sec {
+        display: block;
+
+        .id-and-occupation{
+            margin-bottom: 30px;
+        }
+        
+        .senders-address {
+            text-align: left;
+        }
+    }
+
+    .controls {
+        .status {
+            justify-content: space-between;
+        }
+    }
+
+    .controls-top {
+        display: none;
+    }
+
+    .controls-bottom {
+        position: sticky;
+        bottom: 0;
+        padding: 0 20px;
+    }
+
+    .middle-sec {
+        gap: 32px;
     }
 }

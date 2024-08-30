@@ -19,7 +19,7 @@
                 }
                 <!-- <p class="item-status" ><span class="span-status-color">&#9679;</span>{{ invoice.status }}</p> -->
             </div>
-            <div class="control-btns">
+            <div class="control-btns controls-top">
                 <button class="btn edit-btn">Edit</button>
                 <button class="btn delete-btn" 
                     (click)="onDeleteInvoice(invoice.id)">
@@ -99,6 +99,43 @@
                     <p>Amount Due</p>
                     <p>{{ invoice.total | currency:'GBP' }}</p>
                 </div>
+            </div>
+            
+            <div class="bottom-sec">
+                <div class="item-info">
+                    <div class="headers">
+                        <p>Item Name</p>
+                        <div class="">
+                            <p>QTY</p>
+                            <p>Price</p>
+                            <p>Total</p>
+                        </div>
+                    </div>
+                    @for(item of invoice.items; track item) {
+                        <div class="item-description">
+                            <p>{{ item.name }}</p>
+                            <div class="">
+                                <p>{{ item.quantity }}</p>
+                                <p>{{ item.price | currency:'GBP' }}</p>
+                                <p>{{ item.total | currency:'GBP' }}</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="amount-due">
+                    <p>Amount Due</p>
+                    <p>{{ invoice.total | currency:'GBP' }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="controls controls-bottom">
+            <div class="control-btns">
+                <button class="btn edit-btn">Edit</button>
+                <button class="btn delete-btn" 
+                    (click)="onDeleteInvoice(invoice.id)">
+                    Delete
+                </button>
+                <button class="btn mark-as-paid-btn">Mark as Paid</button>
             </div>
         </div>
     </div>
