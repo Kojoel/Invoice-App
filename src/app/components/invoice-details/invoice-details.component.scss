@@ -18,6 +18,7 @@
     display: flex;
     gap: 23.66px;
     margin-bottom: 32px;
+    cursor: pointer;
 }
 
 .go-back {
@@ -105,4 +106,213 @@
     background: var(--white);
     border-radius: 8px;
     padding: 32px;
+}
+
+
+.top-sec {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--item-details-text-color);
+    margin-bottom: 21px;
+    font-weight: 500;
+}
+
+.id-and-occupation {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.id {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black-deep);
+
+    .id-span {
+        font-size: 16px;
+        color: var(--item-details-text-color);
+        font-weight: 600;
+    }
+}
+
+.senders-address {
+    display: flex;
+    flex-direction: column;
+    line-height: 18px;
+    text-align: right;
+}
+
+
+.middle-sec {
+    width: 100%;
+    display: flex;
+    gap: 100px;
+    margin-bottom: 45px;
+}
+
+.dates {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--item-details-text-color);
+}
+
+.invoice-date {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    p:last-of-type {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--black-deep);
+    }
+}
+
+.payment-due {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    p:last-of-type {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--black-deep);
+    }
+}
+
+.client-bill {
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+    color: var(--item-details-text-color);
+}
+
+.bill-to {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 8px;
+
+    p:last-of-type {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--black-deep);
+    }
+}
+
+.client-address {
+    display: flex;
+    flex-direction: column;
+    line-height: 18px;
+}
+
+.send-to {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--item-details-text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    p:last-of-type {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--black-deep);
+    }
+}
+
+.bottom-sec {
+    width: 100%;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--item-details-text-color);
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    background: var(--item-info-box-color);
+    border-radius: 8px 8px 0 0;
+    padding: 32px;
+}
+
+.headers {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+
+    div {
+        display: flex;
+        color: var(--item-details-text-color);
+        font-weight: 500;
+
+        p:nth-child(1) {
+            width: 29px;
+            text-align: center;
+        }
+        p:nth-child(2) {
+            width: 65px;
+            margin-left: 74px;
+            text-align: right;
+        }
+        p:nth-child(3) {
+            width: 65px;
+            margin-left: 74px;
+            text-align: right;
+        }
+    }
+}
+
+.item-description {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    color: var(--black-deep);
+
+    div {
+        display: flex;
+        color: var(--item-details-text-color);
+        font-weight: 500;
+
+        p:nth-child(1) {
+            width: 29px;
+            text-align: center;
+        }
+        p:nth-child(2) {
+            width: 65px;
+            margin-left: 74px;
+            text-align: right;
+        }
+        p:nth-child(3) {
+            width: 65px;
+            margin-left: 74px;
+            text-align: right;
+            font-weight: 700;
+            color: var(--black-deep);
+        }
+    }
+}
+
+.amount-due {
+    width: 100%;
+    height: 80px;
+    background: var(--amount-due-box-color);
+    border-radius: 0 0 8px 8px;
+    padding: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--white);
+
+    p:last-of-type {
+        font-size: 24px;
+        font-weight: 700;
+    }
 }

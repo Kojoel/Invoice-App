@@ -42,7 +42,7 @@ export class InvoiceListComponent implements OnInit {
 
     // Subscribe to obeservable from store...
     this.invoices$.subscribe(invoices => {
-      console.log('Array of Invoices:', invoices);
+      // console.log('Array of Invoices:', invoices);
     });
 
     // SUbscribe to observable from data service...
