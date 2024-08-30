@@ -7,12 +7,14 @@ import { loadInvoices } from '../../store/invoice.actions';
 import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
 import { DataService } from '../../services/data.service';
 import { FormsModule } from '@angular/forms';
+import { InvoiceDetailsComponent } from '../invoice-details/invoice-details.component';
+
 
 
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
-  imports: [CommonModule, NgIf, AsyncPipe, FormsModule],
+  imports: [CommonModule, NgIf, AsyncPipe, FormsModule, InvoiceDetailsComponent,],
   templateUrl: './invoice-list.component.html',
   styleUrls: ['./invoice-list.component.scss']
 })
@@ -29,6 +31,7 @@ export class InvoiceListComponent implements OnInit {
     pending: false,
     paid: false
   };
+  router: any;
 
 
   constructor(private store: Store, private dataService: DataService) {
@@ -44,11 +47,6 @@ export class InvoiceListComponent implements OnInit {
     this.invoices$.subscribe(invoices => {
       // console.log('Array of Invoices:', invoices);
     });
-
-    // SUbscribe to observable from data service...
-    // this.dataService.getInvoices().subscribe(invoices => {
-    //   console.log('Array of Invoices:', invoices);
-    // });
 
     this.dataService.windowWidth$.subscribe(width => {
       this.windowWidth = width;
@@ -78,5 +76,10 @@ export class InvoiceListComponent implements OnInit {
       })
     );
 
+  }
+
+  viewInvoiceDetails(id: string): void {
+    this.router.navigate(['/invoice', id]);
+    console.log("its working: ", id);
   }
 }

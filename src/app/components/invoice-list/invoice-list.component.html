@@ -58,7 +58,7 @@
             @if(filteredInvoices$ | async; as invoices) {
               @for(invoice of invoices; track invoice) {
                 <div class="invoice-list-items">
-                  <div class="item-details">
+                  <div class="item-details" (click)="viewInvoiceDetails(invoice.id)">
                       <div class="id-and-date">
                           <div class="for-mobile-flexing">
                               <p class="item-id"><span class="span-purple">#</span> {{ invoice.id }} </p>
