@@ -85,11 +85,11 @@
                         </div>
                     </div>
                     @for(item of invoice.items; track item) {
-                        <div class="item-description">
+                        <div class="item-description item-desc-top">
                             <p>{{ item.name }}</p>
                             <div class="">
                                 <p>{{ item.quantity }}</p>
-                                <p>{{ item.price | currency:'GBP' }}</p>
+                                <p class="price-top">{{ item.price | currency:'GBP' }}</p>
                                 <p>{{ item.total | currency:'GBP' }}</p>
                             </div>
                         </div>
@@ -101,28 +101,22 @@
                 </div>
             </div>
             
-            <div class="bottom-sec">
-                <div class="item-info">
-                    <div class="headers">
-                        <p>Item Name</p>
-                        <div class="">
-                            <p>QTY</p>
-                            <p>Price</p>
-                            <p>Total</p>
-                        </div>
-                    </div>
+            <div class="bottom-sec-bottom">
+                <div class="item-info item-info-bottom">
                     @for(item of invoice.items; track item) {
-                        <div class="item-description">
-                            <p>{{ item.name }}</p>
-                            <div class="">
-                                <p>{{ item.quantity }}</p>
-                                <p>{{ item.price | currency:'GBP' }}</p>
-                                <p>{{ item.total | currency:'GBP' }}</p>
+                        <div class="item-description item-description-bottom">
+                            <div class="item-total-bottom">
+                                <p>{{ item.name }}</p>
+                                <div class="quantity-and-price-bottom">
+                                    <p>{{ item.quantity }}x</p>
+                                    <p class="price-top">{{ item.price | currency:'GBP' }}</p>
+                                </div>
                             </div>
+                            <p>{{ item.total | currency:'GBP' }}</p>
                         </div>
                     }
                 </div>
-                <div class="amount-due">
+                <div class="amount-due amount-due-bottom">
                     <p>Amount Due</p>
                     <p>{{ invoice.total | currency:'GBP' }}</p>
                 </div>
