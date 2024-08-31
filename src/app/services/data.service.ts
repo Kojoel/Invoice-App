@@ -9,11 +9,10 @@ import { Invoice } from '../model/invoice.model' ;
 export class DataService {
   private dataUrl = '../../assets/data/data.json';
 
-  invoiceData: Invoice[] = [];
+  invoiceData$: Observable<Invoice[]> | undefined;
 
   windowWidth$: Observable<number>;
 
-  store: any;
   selectedStatuses: any;
   invoices$: any;
 
@@ -33,6 +32,12 @@ export class DataService {
   getInvoices(): Observable<Invoice[]> {
     return this.http.get<Invoice[]>(this.dataUrl);
   }
+
+  checkInvoiceContent() {
+    // this.InvoiceData
+  }
+
+  
   
 
 }

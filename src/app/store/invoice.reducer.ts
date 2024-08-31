@@ -26,7 +26,7 @@ export const invoiceReducer = createReducer(
     invoices,
     loading: false
   })),
-  on(deleteInvoice, (state, { id }) => ({
+  on(InvoiceActions.deleteInvoice, (state, { id }) => ({
     ...state,
     invoices: state.invoices.filter(invoice => invoice.id !== id)
   }))
