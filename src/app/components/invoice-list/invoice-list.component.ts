@@ -7,7 +7,6 @@ import { loadInvoices } from '../../store/invoice.actions';
 import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
 import { DataService } from '../../services/data.service';
 import { FormsModule } from '@angular/forms';
-import { InvoiceDetailsComponent } from '../invoice-details/invoice-details.component';
 import { Router } from '@angular/router';
 
 
@@ -15,7 +14,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
-  imports: [CommonModule, NgIf, AsyncPipe, FormsModule, InvoiceDetailsComponent],
+  imports: [CommonModule, NgIf, AsyncPipe, FormsModule,],
   templateUrl: './invoice-list.component.html',
   styleUrls: ['./invoice-list.component.scss']
 })
@@ -36,7 +35,6 @@ export class InvoiceListComponent implements OnInit {
 
   constructor(private store: Store, private dataService: DataService, private router: Router) {
     this.invoices$ = this.store.select(selectAllInvoices); // Gets data from store
-
   }
 
   ngOnInit(): void {

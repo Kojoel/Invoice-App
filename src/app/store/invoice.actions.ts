@@ -9,7 +9,7 @@ export const deleteInvoice = createAction(
     props<{ id: string }>()
 );
 
-export const deleteInvoiceSuccess = createAction(
-    '[Invoice] Delete Invoice Success',
+export const markAsPaid = createAction(
+    '[Invoice] Mark As Paid',
     props<{ id: string }>()
 );

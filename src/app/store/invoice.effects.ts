@@ -33,6 +33,17 @@ export class InvoiceEffects {
     )
   );
 
+  markAsPaid$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(InvoiceActions.markAsPaid),
+      mergeMap(({ id }) =>
+        this.http.patch<Invoice>(this.invoicesUrl, { status: 'paid' }).pipe(
+          map(() => InvoiceActions.markAsPaid({ id })),
+        )
+      )
+    )
+  );
+
 
 
 }

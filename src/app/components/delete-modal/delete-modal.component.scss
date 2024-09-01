@@ -47,3 +47,13 @@
 .show-modal {
     display: block;
 }
+
+
+// Media queries
+@media screen and (max-width: 600px) {
+    .delete-item-container {
+        width: 327px;
+        height: 220px;
+        padding: 32px;
+    }
+}

@@ -7,11 +7,13 @@ import { Invoice } from '../../model/invoice.model';
 import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { DeleteModalService } from '../../services/delete-modal.service';
+import { markAsPaid } from '../../store/invoice.actions';
+import * as InvoiceActions from '../../store/invoice.actions';
 
 @Component({
   selector: 'app-invoice-details',
   standalone: true,
-  imports: [NgIf, AsyncPipe, CommonModule, DeleteModalComponent],
+  imports: [NgIf, AsyncPipe, CommonModule, DeleteModalComponent,],
   templateUrl: './invoice-details.component.html',
   styleUrl: './invoice-details.component.scss'
 })
@@ -39,5 +41,12 @@ export class InvoiceDetailsComponent {
 
   gotoList(): void {
     this.router.navigate(['/home']);
+  }
+
+  markAsPaid(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.store.dispatch(InvoiceActions.markAsPaid({ id }));
+    }
   }
 }
